@@ -89,3 +89,24 @@ def calcular_desconto(subtotal: float, cupom: str) -> float:
       taxa = 0.10
 
   return subtotal * taxa
+
+def classificar_pedido(subtotal: float) -> str:
+    """
+    Retorna a classificação do pedido de acordo com o subtotal válido.
+
+    - Subtotal == 0: "Pedido sem itens válidos"
+    - Até R$ 50,00: "Pedido pequeno"
+    - R$ 50,01 a R$ 100,00: "Pedido médio"
+    - Acima de R$ 100,00: "Pedido grande"
+
+    :param subtotal: Soma dos subtotais válidos (antes do desconto).
+    :return: String contendo a classificação.
+    """
+    if subtotal <= 0:
+        return "Pedido sem itens válidos"
+    elif subtotal <= 50.0:
+        return "Pedido pequeno"
+    elif subtotal <= 100.0:
+        return "Pedido médio"
+    else:
+        return "Pedido grande"
