@@ -27,3 +27,25 @@ pedido = [
 
 nome = "Felipe"
 cupom = "SIM"
+
+
+# ------------------------------------------------------------------------------
+# FUNÇÕES OBRIGATÓRIAS
+# ------------------------------------------------------------------------------
+
+def validar_item(produto: str, quantidade: int, cardapio: dict) -> bool:
+    """
+    Verifica se um item do pedido é válido.
+
+    Um item só é válido quando o produto existe no cardápio e a quantidade
+    é estritamente maior que zero.
+
+    :param produto: Nome do produto padronizado em minúsculo.
+    :param quantidade: Quantidade solicitada do produto.
+    :param cardapio: Dicionário contendo os produtos e preços.
+    :return: True se válido, False caso contrário.
+    """
+    produto_existe = produto in cardapio
+    quantidade_valida = quantidade > 0
+    return produto_existe and quantidade_valida
+
