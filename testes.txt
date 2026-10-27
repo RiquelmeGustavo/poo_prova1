@@ -18,3 +18,37 @@ Saída Obtida:
 - Subtotal: R$ 86.00 | Desconto: R$ 8.60 | Total Final: R$ 77.40
 - Classificação: Pedido médio
 - Rejeitados: 'pizza' (produto inexistente), 'agua' (quantidade inválida)
+
+CENÁRIO 2: Mesmo pedido sem cupom
+----------------------------------------------------------------------
+Dados:
+- Cliente: "Felipe", Cupom: "NAO"
+- Pedido: Igual ao Cenário 1
+Resultado Esperado:
+- Subtotal: R$ 86,00, Desconto: R$ 4,30 (5%), Total: R$ 81,70, Classificação: Pedido médio
+Saída Obtida:
+- Subtotal: R$ 86.00 | Desconto: R$ 4.30 | Total Final: R$ 81.70
+- Classificação: Pedido médio
+
+CENÁRIO 3: Limites das faixas (sem cupom)
+----------------------------------------------------------------------
+3.1 - Subtotal R$ 50.00
+- Pedido: HAMBURGUER (2x) -> R$ 50,00
+- Esperado: Taxa 0% | Desconto: R$ 0,00 | Total: R$ 50,00 | Classificação: Pedido pequeno
+- Obtido: Subtotal R$ 50.00, Desconto R$ 0.00, Total R$ 50.00, Pedido pequeno
+
+3.2 - Subtotal R$ 50.01
+- Pedido: HAMBURGUER (2x de R$ 25,005) -> R$ 50,01
+- Esperado: Taxa 5% | Desconto: R$ 2,50 | Total: R$ 47,51 | Classificação: Pedido médio
+- Obtido: Subtotal R$ 50.01, Desconto R$ 2.50, Total R$ 47.51, Pedido médio
+
+3.3 - Subtotal R$ 100.00
+- Pedido: HAMBURGUER (4x) -> R$ 100,00
+- Esperado: Taxa 5% | Desconto: R$ 5,00 | Total: R$ 95,00 | Classificação: Pedido médio
+- Obtido: Subtotal R$ 100.00, Desconto R$ 5.00, Total R$ 95.00, Pedido médio
+
+3.4 - Subtotal R$ 100.01
+- Pedido: HAMBURGUER (4x de R$ 25,0025) -> R$ 100,01
+- Esperado: Taxa 10% | Desconto: R$ 10,00 | Total: R$ 90,01 | Classificação: Pedido grande
+- Obtido: Subtotal R$ 100.01, Desconto R$ 10.00, Total R$ 90.01, Pedido grande
+
