@@ -48,4 +48,15 @@ def validar_item(produto: str, quantidade: int, cardapio: dict) -> bool:
     produto_existe = produto in cardapio
     quantidade_valida = quantidade > 0
     return produto_existe and quantidade_valida
+    
+def calcular_subtotal(quantidade: int, preco_unitario: float) -> float:
+  """
+  Calcula o subtotal numérico de um item válido.
+
+  :param quantidade: Quantidade de itens.
+  :param preco_unitario: Preço unitário do produto.
+  :return: Subtotal do item (quantidade * preço unitário).
+  """
+  return quantidade * preco_unitario
+
 
