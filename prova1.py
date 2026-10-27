@@ -180,3 +180,32 @@ def processar_pedido(cliente: str, cupom: str, lista_pedido: list, menu: dict):
         qtd = item.get("quantidade", 0)
 
         produto_padronizado = str(produto_original).strip().lower()
+
+        motivos = []
+        if produto_padronizado not in menu:
+            motivos.append("produto inexistente")
+        if qtd <= 0:
+            motivos.append("quantidade inválida")
+
+        eh_valido = validar_item(produto_padronizado, qtd, menu)
+
+        if eh_valido:
+            preco_unitario = menu[produto_padronizado]
+            subtotal_item = calcular_subtotal(qtd, preco_unitario)
+
+            subtotal_pedido += subtotal_item
+            linhas_validas += 1
+            total_unidades += qtd
+
+            itens_validos.append({
+                "produto": produto_padronizado,
+                "quantidade": qtd,
+                "preco_unitario": preco_unitario,
+                "subtotal": subtotal_item
+            })
+        else:
+            itens_rejeitados.append({
+                "produto_original": produto_original,
+                "motivos": motivos
+            })
+    
