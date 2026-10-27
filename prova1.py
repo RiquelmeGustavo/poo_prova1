@@ -154,3 +154,29 @@ def exibir_resumo(cliente: str, itens_validos: list, itens_rejeitados: list,
     print(f"Total Final:        R$ {total:.2f}")
     print(f"Classificação:      {classificacao}")
     print("=" * 55)
+
+
+# ------------------------------------------------------------------------------
+# PROCESSAMENTO E PROGRAMA PRINCIPAL
+# ------------------------------------------------------------------------------
+
+def processar_pedido(cliente: str, cupom: str, lista_pedido: list, menu: dict):
+    """
+    Função principal de processamento que coordena as validações,
+    acumulações, regras de negócio e chamada do relatório.
+    """
+    cupom_padronizado = cupom.strip().lower()
+    cliente_padronizado = cliente.strip()
+
+    itens_validos = []
+    itens_rejeitados = []
+
+    subtotal_pedido = 0.0
+    linhas_validas = 0
+    total_unidades = 0
+
+    for item in lista_pedido:
+        produto_original = item.get("produto", "")
+        qtd = item.get("quantidade", 0)
+
+        produto_padronizado = str(produto_original).strip().lower()
