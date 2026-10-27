@@ -52,3 +52,27 @@ CENÁRIO 3: Limites das faixas (sem cupom)
 - Esperado: Taxa 10% | Desconto: R$ 10,00 | Total: R$ 90,01 | Classificação: Pedido grande
 - Obtido: Subtotal R$ 100.01, Desconto R$ 10.00, Total R$ 90.01, Pedido grande
 
+CENÁRIO 4: Nenhum item válido
+----------------------------------------------------------------------
+Dados:
+- Pedido: [] ou [{"produto": "pizza", "quantidade": 1}, {"produto": "agua", "quantidade": -1}]
+Resultado Esperado:
+- Linhas válidas: 0, Unidades: 0, Subtotal: R$ 0,00, Desconto: R$ 0,00, Total: R$ 0,00
+- Classificação: "Pedido sem itens válidos"
+Saída Obtida:
+- Linhas Válidas: 0 | Total de Unidades: 0
+- Subtotal: R$ 0.00 | Desconto: R$ 0.00 | Total Final: R$ 0.00
+- Classificação: Pedido sem itens válidos
+
+CENÁRIO 5: Repetições e quantidade negativa
+----------------------------------------------------------------------
+Dados:
+- Pedido: [{"produto": "batata", "quantidade": 2}, {"produto": "batata", "quantidade": 1}, {"produto": "suco", "quantidade": -2}]
+Resultado Esperado:
+- 'suco' rejeitado por quantidade inválida.
+- 2 linhas válidas (mantidas separadamente), 3 unidades totais (2+1).
+- Subtotal: R$ 36,00.
+Saída Obtida:
+- Linhas Válidas: 2 | Total de Unidades: 3
+- Rejeitado: 'suco' (quantidade inválida)
+- Subtotal: R$ 36.00
