@@ -59,4 +59,33 @@ def calcular_subtotal(quantidade: int, preco_unitario: float) -> float:
   """
   return quantidade * preco_unitario
 
+def calcular_desconto(subtotal: float, cupom: str) -> float:
+  """
+  Calcula o valor monetário do desconto com base no subtotal válido e cupom.
 
+  Faixas de Desconto (base + 5% se cupom == "sim"):
+  - Até R$ 50,00: 0% (com cupom: 5%)
+  - R$ 50,01 a R$ 100,00: 5% (com cupom: 10%)
+  - Acima de R$ 100,00: 10% (com cupom: 15%)
+
+  :param subtotal: Soma dos subtotais dos itens válidos.
+  :param cupom: Cupom padronizado em minúsculo ("sim" ou "nao").
+  :return: Valor em reais do desconto a ser aplicado.
+  """
+
+  if cupom == "sim":
+    if subtotal <= 50.0:
+      taxa = 0.05
+    elif subtotal <= 100.0:
+      taxa = 0.10
+    else:
+      taxa = 0.15
+  else:
+    if subtotal <= 50.0:
+      taxa = 0.00
+    elif subtotal <= 100.0:
+      taxa = 0.05
+    else:
+      taxa = 0.10
+
+  return subtotal * taxa
