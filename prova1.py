@@ -5,10 +5,11 @@
 # Riquelme Gustavo de Arruda Silva
 # Wilas Kauã
 # ==============================================================================
-#
+
 # ------------------------------------------------------------------------------
 # DADOS INICIAIS (Exemplo fornecido na avaliação)
 # ------------------------------------------------------------------------------
+
 cardapio = {
     "hamburguer": 25.0,
     "sanduiche": 18.0,
@@ -33,7 +34,7 @@ cupom = "SIM"
 # FUNÇÕES OBRIGATÓRIAS
 # ------------------------------------------------------------------------------
 
-def validar_item(produto: str, quantidade: int, cardapio: dict) -> bool:
+def validar_item(produto: str, quantidade: int, cardapio: dict):
     """
     Verifica se um item do pedido é válido.
 
@@ -48,8 +49,9 @@ def validar_item(produto: str, quantidade: int, cardapio: dict) -> bool:
     produto_existe = produto in cardapio
     quantidade_valida = quantidade > 0
     return produto_existe and quantidade_valida
-    
-def calcular_subtotal(quantidade: int, preco_unitario: float) -> float:
+
+
+def calcular_subtotal(quantidade: int, preco_unitario: float):
   """
   Calcula o subtotal numérico de um item válido.
 
@@ -59,7 +61,8 @@ def calcular_subtotal(quantidade: int, preco_unitario: float) -> float:
   """
   return quantidade * preco_unitario
 
-def calcular_desconto(subtotal: float, cupom: str) -> float:
+
+def calcular_desconto(subtotal: float, cupom: str):
   """
   Calcula o valor monetário do desconto com base no subtotal válido e cupom.
 
@@ -72,7 +75,6 @@ def calcular_desconto(subtotal: float, cupom: str) -> float:
   :param cupom: Cupom padronizado em minúsculo ("sim" ou "nao").
   :return: Valor em reais do desconto a ser aplicado.
   """
-
   if cupom == "sim":
     if subtotal <= 50.0:
       taxa = 0.05
@@ -89,6 +91,7 @@ def calcular_desconto(subtotal: float, cupom: str) -> float:
       taxa = 0.10
 
   return subtotal * taxa
+
 
 def classificar_pedido(subtotal: float) -> str:
     """
@@ -111,9 +114,10 @@ def classificar_pedido(subtotal: float) -> str:
     else:
         return "Pedido grande"
 
+
 def exibir_resumo(cliente: str, itens_validos: list, itens_rejeitados: list,
                   linhas_validas: int, total_unidades: int, subtotal: float,
-                  desconto: float, total: float, classificacao: str) -> None:
+                  desconto: float, total: float, classificacao: str):
     """
     Imprime o relatório detalhado do pedido.
 
@@ -208,4 +212,28 @@ def processar_pedido(cliente: str, cupom: str, lista_pedido: list, menu: dict):
                 "produto_original": produto_original,
                 "motivos": motivos
             })
-    
+
+    if linhas_validas == 0:
+        subtotal_pedido = 0.0
+        desconto = 0.0
+        total = 0.0
+        classificacao = classificar_pedido(0.0)
+    else:
+        desconto = calcular_desconto(subtotal_pedido, cupom_padronizado)
+        total = subtotal_pedido - desconto
+        classificacao = classificar_pedido(subtotal_pedido)
+
+    exibir_resumo(
+        cliente=cliente_padronizado,
+        itens_validos=itens_validos,
+        itens_rejeitados=itens_rejeitados,
+        linhas_validas=linhas_validas,
+        total_unidades=total_unidades,
+        subtotal=subtotal_pedido,
+        desconto=desconto,
+        total=total,
+        classificacao=classificacao
+    )
+
+
+processar_pedido(nome, cupom, pedido, cardapio)
