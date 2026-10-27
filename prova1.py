@@ -131,3 +131,26 @@ def exibir_resumo(cliente: str, itens_validos: list, itens_rejeitados: list,
     print("                RELATÓRIO DO PEDIDO                ")
     print("=" * 55)
     print(f"Cliente: {cliente}\n")
+
+ print("--- ITENS PROCESSADOS ---")
+    if itens_validos:
+        for item in itens_validos:
+            print(f"• {item['produto'].capitalize()}: {item['quantidade']}x R$ {item['preco_unitario']:.2f} "
+                  f"= R$ {item['subtotal']:.2f}")
+    else:
+        print("Nenhum item válido encontrado.")
+
+    if itens_rejeitados:
+        print("\n--- ITENS REJEITADOS ---")
+        for item in itens_rejeitados:
+            motivos_str = " e ".join(item['motivos'])
+            print(f"• Produto: '{item['produto_original']}' | Motivo(s): {motivos_str}")
+
+    print("\n--- RESUMO E TOTALIZAÇÃO ---")
+    print(f"Linhas Válidas:     {linhas_validas}")
+    print(f"Total de Unidades:  {total_unidades}")
+    print(f"Subtotal:           R$ {subtotal:.2f}")
+    print(f"Desconto:           R$ {desconto:.2f}")
+    print(f"Total Final:        R$ {total:.2f}")
+    print(f"Classificação:      {classificacao}")
+    print("=" * 55)
