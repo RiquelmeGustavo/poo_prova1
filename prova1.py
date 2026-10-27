@@ -110,3 +110,24 @@ def classificar_pedido(subtotal: float) -> str:
         return "Pedido médio"
     else:
         return "Pedido grande"
+
+def exibir_resumo(cliente: str, itens_validos: list, itens_rejeitados: list,
+                  linhas_validas: int, total_unidades: int, subtotal: float,
+                  desconto: float, total: float, classificacao: str) -> None:
+    """
+    Imprime o relatório detalhado do pedido.
+
+    :param cliente: Nome do cliente.
+    :param itens_validos: Lista de dicionários dos itens aprovados.
+    :param itens_rejeitados: Lista de dicionários dos itens rejeitados e seus motivos.
+    :param linhas_validas: Quantidade de linhas válidas processadas.
+    :param total_unidades: Soma total de itens/unidades válidas.
+    :param subtotal: Subtotal monetário acumulado.
+    :param desconto: Valor total do desconto aplicado em reais.
+    :param total: Valor final a pagar (subtotal - desconto).
+    :param classificacao: Categoria do pedido.
+    """
+    print("=" * 55)
+    print("                RELATÓRIO DO PEDIDO                ")
+    print("=" * 55)
+    print(f"Cliente: {cliente}\n")
