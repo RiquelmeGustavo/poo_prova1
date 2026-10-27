@@ -236,4 +236,5 @@ def processar_pedido(cliente: str, cupom: str, lista_pedido: list, menu: dict):
     )
 
 
-processar_pedido(nome, cupom, pedido, cardapio)
+if __name__ == "__main__":
+    processar_pedido(nome, cupom, pedido, cardapio)
