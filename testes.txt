@@ -1,0 +1,20 @@
+======================================================================
+               REGISTRO DE CENÁRIOS DE TESTE DA AVALIAÇÃO
+======================================================================
+
+CENÁRIO 1: Pedido Inicial
+----------------------------------------------------------------------
+Dados:
+- Cliente: "Felipe", Cupom: "SIM"
+- Pedido: HAMBURGUER (2x), batata (1x), Suco (3x), pizza (1x), agua (0x)
+Resultado Esperado:
+- Hambúrguer (R$ 50), Batata (R$ 12), Suco (R$ 24)
+- Rejeições: pizza (produto inexistente) e água (quantidade inválida)
+- 3 linhas válidas, 6 unidades, Subtotal: R$ 86,00, Desconto: R$ 8,60 (10%), Total: R$ 77,40
+- Classificação: Pedido médio
+Saída Obtida:
+- Linhas Válidas: 3
+- Total de Unidades: 6
+- Subtotal: R$ 86.00 | Desconto: R$ 8.60 | Total Final: R$ 77.40
+- Classificação: Pedido médio
+- Rejeitados: 'pizza' (produto inexistente), 'agua' (quantidade inválida)
